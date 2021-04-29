@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <h1>เว็บไซต์ของฉัน สำเร็จแล้ว</h1>
+    <p> <a href="{% url 'home-page' %}">หน้าแรก </a>  |
+        <a href="{% url 'about-page' %}">หน้าเกี่ยวกับเรา </a> |
+        <a href="{% url 'contact-page' %}"> ติดต่อ</a>
+    </p>
+</div>
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="https://static.thairath.co.th/media/HCtHFA7ele6Q2dUMyaGYLil3AIMHkiZ9CVQzoeTvSvfEWXkmDotD2JRXvaa48OKWcI.jpg" width="100">
+            <h3>{{ product1 }}</h3>
+            <p>แอปเปิ้ลชิ้นนี้ ราคา 500 บาท</p>
+            <p></p>
+        </div>
+        <div class="col-sm-4">
+            <h3>{{ product2 }}</h3>
+            <p>ราคา 50000 บาท</p>
+            <p></p>
+        </div>
+        <div class="col-sm-4">
+            <h3>{{ product3 }}</h3>
+            <p>ไม่อยากร่วงเหมือนมะม่วง อย่ามาทำหร่อย</p>
+            <p></p>
+        </div>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>
