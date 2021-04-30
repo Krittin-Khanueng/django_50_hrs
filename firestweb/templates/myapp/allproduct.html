@@ -1,0 +1,20 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+    <h3>สินค้าทั้งหมดในร้าน ?</h3>
+    <p>ตอนนี้เรามีสินค้าให้เลือกชมหลายรายการ</p>
+    {% for pd in product %}
+        <div class="card" style="width:400px">
+        <img class="card-img-top" src="{{ pd.imageurl }}" width="200">
+        <div class="card-body">
+            <h1 class="card-title">{{ pd.name }} </h1>
+            <p>{{ pd.price }}</p>
+            <p>{{ pd.detail }}</p>
+        </div>
+        <div>
+        <br>
+    {% endfor %}
+
+{% endblock content %}
+
