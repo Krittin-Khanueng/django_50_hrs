@@ -38,6 +38,6 @@ def AddProduct(request):
 
 
 def Product(request):
-	product = Allproduct.objects.all()
+	product = Allproduct.objects.all().order_by('id').reverse()
 	context = {'product': product}
 	return render(request, 'myapp/allproduct.html', context)

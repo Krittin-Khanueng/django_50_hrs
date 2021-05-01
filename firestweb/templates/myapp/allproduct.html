@@ -4,17 +4,38 @@
 
     <h3>สินค้าทั้งหมดในร้าน ?</h3>
     <p>ตอนนี้เรามีสินค้าให้เลือกชมหลายรายการ</p>
-    {% for pd in product %}
-        <div class="card" style="width:400px">
-        <img class="card-img-top" src="{{ pd.imageurl }}" width="200">
-        <div class="card-body">
-            <h1 class="card-title">{{ pd.name }} </h1>
-            <p>{{ pd.price }}</p>
-            <p>{{ pd.detail }}</p>
+    <div class="container-fluid">
+        <div class="row">
+            {% for pd in product %}
+                <div class="container col-sm-4">
+                    <div class="card" style="width:300px">
+                        {% if pd.image %}
+                            <img class="card-img-top" src="{{ pd.image.url }}" width="200">
+                        {% else %}
+                            <img class="card-img-top" src="/media/default.png" width="200">
+                        {% endif %}
+                        <div class="card-body">
+                            <h1 class="card-title">{{ pd.name }} </h1>
+                            <p>ราคา{{ pd.price }} บาท/ต่อหน่วย</p>
+                            <p>{{ pd.detail }}</p>
+
+                            {% if pd.quantity > 0 %}
+                                <p>สินค้ามีในสต็อก {{ pd.quantity }} {{ pd.unit }}</p>
+                            {% else %}
+                                <p><span style="color: red; ">สินค้าอาจจะหมดสต็อก กรุณาติดต่อแอดมิน</span></p>
+
+                            {% endif %}
+                            {% if pd.instock == True %}
+                                <a href="#" class="btn btn-success">สั่งซื้อ</a>
+                            {% else %}
+                                <a href="#" class="btn btn-warning">สินค้าหมดแล้ว</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+            {% endfor %}
         </div>
-        <div>
-        <br>
-    {% endfor %}
+    </div>
 
 {% endblock content %}
-
