@@ -8,19 +8,10 @@
     <p>กรุณากรอกข้อมูลสมัครสมาชิก</p>
     <form method="POST">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="first_name">ชื่อ</label>
-            <input type="text" class="form-control" id="first_name" name="first_name">
-        </div>
 
         <div class="form-group">
-            <label for="last_name">นามสกุล</label>
-            <input type="text" class="form-control" id="last_name" name="last_name">
-        </div>
-
-        <div class="form-group">
-            <label for="email">อีเมล</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <label for="username">อีเมล</label>
+            <input type="text" class="form-control" id="username" name="username">
         </div>
 
         <div class="form-group">
