@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.models import User
 from .models import Allproduct
 
 
@@ -20,18 +21,32 @@ def Contact(request):
 
 
 def AddProduct(request):
-	if request.method == 'POST':
+	if request.method == 'POST' and request.FILES['imageupload']:
 		data = request.POST.copy()
 		name = data.get('name')
 		price = data.get('price')
 		detail = data.get('detail')
 		imageurl = data.get('imageurl')
+		quantity = data.get('quantity')
+		unit = data.get('unit')
 
 		new = Allproduct()
 		new.name = name
 		new.price = price
 		new.detail = detail
 		new.imageurl = imageurl
+		new.quantity = quantity
+		new.unit = unit
+		######## save Image###############
+		file_image = request.FILES['imageupload']
+		file_image_name = request.FILES['imageupload'].name.replace(' ', '')
+		print('FILE_IMAGE:', file_image)
+		print('FILE_IMAGE:', file_image.name)
+		fs = FileSystemStorage()
+		filename = fs.save(file_image_name, file_image)
+		upload_file_url = fs.url(filename)
+		new.image = upload_file_url[6:]
+		#######################
 		new.save()
 
 	return render(request, 'myapp/addproduct.html')
@@ -41,3 +56,21 @@ def Product(request):
 	product = Allproduct.objects.all().order_by('id').reverse()
 	context = {'product': product}
 	return render(request, 'myapp/allproduct.html', context)
+
+
+def Register(request):
+	if request.method == 'POST':
+		data = request.POST.copy()
+		first_name = data.get('first_name')
+		last_name = data.get('last_name')
+		email = data.get('email')
+		password = data.get('password')
+
+		newuser = User()
+		newuser.username = email
+		newuser.email = email
+		newuser.first_name = first_name
+		newuser.last_name = last_name
+		newuser.set_password(password)
+		newuser.save()
+	return render(request, 'myapp/register.html')

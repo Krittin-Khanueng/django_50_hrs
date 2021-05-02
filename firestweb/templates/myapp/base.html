@@ -11,27 +11,57 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="margin-bottom:0px">
     <h1>เว็บไซต์ของฉัน สำเร็จแล้ว</h1>
-    <p> <a href="{% url 'home-page' %}">หน้าแรก </a>  |
-        <a href="{% url 'about-page' %}">หน้าเกี่ยวกับเรา </a> |
-        <a href="{% url 'contact-page' %}"> ติดต่อ</a>
-        <a href="{% url 'allproduct-page' %}"> สินค้าทั้งหมด</a>
-        <a href="{% url 'addproduct-page' %}"> เพิ่มสินค้า</a>
-    </p>
 </div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="{% url 'home-page' %}">DarkJame ขายผลไม้ </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about-page' %}">หน้าเกี่ยวกับเรา </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact-page' %}"> ติดต่อ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'allproduct-page' %}"> สินค้าทั้งหมด</a>
+            </li>
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'addproduct-page' %}"> เพิ่มสินค้า</a>
+                {% endif %}
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">ผลไม้นำเข้าจากอเมริกา</a>
+                    <a class="dropdown-item" href="#">ผลไม้นำเข้าจากจีน</a>
+                    <a class="dropdown-item" href="#">ผลไม้นำเข้าจากไทย</a>
+                </div>
+            </li>
+        </ul>
 
 
+        <a class="btn btn-primary" href="{% url 'register-page' %}">สมัครสมาชิก</a>&nbsp&nbsp&nbsp
+        <a class="btn btn-primary" href="/login/">เข้าสู่ระบบ</a>
 
 
+    </div>
+
+</nav>
 
 
-<div class="container">
-{% block content %}
+<div class="container" style="margin-top:30px ">
+    {% block content %}
 
-{% endblock content %}
+    {% endblock content %}
 </div>
-
 
 
 </body>

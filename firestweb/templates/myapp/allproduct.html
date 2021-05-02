@@ -8,16 +8,16 @@
         <div class="row">
             {% for pd in product %}
                 <div class="container col-sm-4">
-                    <div class="card" style="width:300px">
+                    <div class="card" style="width:300px; height:500px">
                         {% if pd.image %}
-                            <img class="card-img-top" src="{{ pd.image.url }}" width="200">
+                            <img class="card-img-top" src="{{ pd.image.url }}" width="400px" style="width:300px; height: 200px; overflow: hidden">
                         {% else %}
-                            <img class="card-img-top" src="/media/default.png" width="200">
+                            <img class="card-img-top" src="/media/default.png" width="400px" style="width:300px; height: 200px; overflow: hidden">
                         {% endif %}
                         <div class="card-body">
                             <h1 class="card-title">{{ pd.name }} </h1>
                             <p>ราคา{{ pd.price }} บาท/ต่อหน่วย</p>
-                            <p>{{ pd.detail }}</p>
+                            <p>{{ pd.detail|truncatechars_html:10 }}</p>
 
                             {% if pd.quantity > 0 %}
                                 <p>สินค้ามีในสต็อก {{ pd.quantity }} {{ pd.unit }}</p>
