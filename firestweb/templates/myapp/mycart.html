@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+        <h3>ตะกร้าสินค้าของฉัน</h3>
+
+        {% for pd in mycart %}
+            <p> {{ pd.stamp }} | {{ pd.product }} | {{ pd.producname }} | {{ pd.price }} | {{ pd.quantity }} | {{ pd.total }}</p>
+            <hr>
+        {% endfor %}
+
+
+{% endblock content %}
+

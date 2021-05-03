@@ -8,4 +8,6 @@ urlpatterns = [
 	path('addproduct/', AddProduct, name='addproduct-page'),
 	path('allproduct/', Product, name='allproduct-page'),
 	path('register/', Register, name='register-page'),
+	path('addtocart/<int:pid>/', AddtoCart, name='addtocart-page'),
+	path('mycart/',MyCart, name='mycart-page')
 ]
