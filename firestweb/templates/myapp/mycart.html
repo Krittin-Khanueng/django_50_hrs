@@ -1,14 +1,47 @@
-{% extends 'myapp/base.html' %}
+{% extends 'myapp/base.html' %} {% block content %}
 
-{% block content %}
+<div class="container">
+  <h2>ตะกร้าสินค้าของฉัน</h2>
+  <p>สินค้าทั้งหมดของลูก้าที่อยู่ในตะกร้า พร้อมยืนยะนการสั่งซื้อ</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>เวลาสั่งซื้อล่าสุด</th>
+        <th>รหัส</th>
+        <th>ชื่อสินค้าสินค้า</th>
+        <th>ราคา</th>
+        <th>จำนวน</th>
+        <th>รวมยอด</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pd in mycart %}
+      <tr>
+        <td>{{ pd.stamp }}</td>
+        <td>{{ pd.productid}}</td>
+        <td>{{ pd.producname }}</td>
+        <td>{{ pd.price }}</td>
+        <td>{{pd.quantity }}</td>
+        <td>{{ pd.total }}</td>
 
-        <h3>ตะกร้าสินค้าของฉัน</h3>
-
-        {% for pd in mycart %}
-            <p> {{ pd.stamp }} | {{ pd.product }} | {{ pd.producname }} | {{ pd.price }} | {{ pd.quantity }} | {{ pd.total }}</p>
-            <hr>
-        {% endfor %}
-
+        <form
+          method="POST"
+          id="form{{pd.productid}}"
+          onsubmit="return confirm('ยืนยันการลบใช่หรือไม่');"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="productid" value="{{ pd.productid}}" />
+          <td>
+            <button form="form{{pd.productid}}" class="btn btn-danger">
+              ลบ
+            </button>
+          </td>
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock content %}
-
