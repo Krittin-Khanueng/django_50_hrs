@@ -1,5 +1,10 @@
-{% extends 'myapp/base.html' %} {% block content %}
-
+{% extends 'myapp/base.html' %} {% block content %} {% if status == 'delete'%}
+<div class="alert alert-danger">
+  <strong>ลบสินค้าเรียบร้อยแล้ว</strong> หากต้องการสินค้าเพิ่ม
+  กรุณากดสั่งซื้อใหม่
+</div>
+{% endif%}
+<br />
 <div class="container">
   <h2>ตะกร้าสินค้าของฉัน</h2>
   <p>สินค้าทั้งหมดของลูก้าที่อยู่ในตะกร้า พร้อมยืนยะนการสั่งซื้อ</p>

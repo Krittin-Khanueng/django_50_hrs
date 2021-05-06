@@ -130,14 +130,16 @@ def AddtoCart(request, pid):
 def MyCart(request):
     username = request.user.username
     user = User.objects.get(username=username)
+    context = {}
     if request.method == "POST":
         data = request.POST.copy()
         productid = data.get('productid')
         item = Cart.objects.get(user=user, productid=productid)
         item.delete()
+        context['status'] = 'delete'
 
         
     mycart = Cart.objects.filter(user=user)
-    context = {'mycart': mycart}
+    context['mycart'] =  mycart
 
     return render(request, 'myapp/mycart.html', context)
