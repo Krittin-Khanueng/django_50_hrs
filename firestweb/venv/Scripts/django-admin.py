@@ -1,4 +1,4 @@
-#!C:\Users\Krittin\PycharmProjects\djangoProject\Django50Hrs\firestweb\venv\Scripts\python.exe
+#!C:\Users\Jame\Documents\GitHub\django_50_hrs\firestweb\venv\Scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
